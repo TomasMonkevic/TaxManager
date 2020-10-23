@@ -8,5 +8,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TaxManager.Persistence\TaxManager.Persistence.csproj" />
+  </ItemGroup>
+
 
 </Project>
