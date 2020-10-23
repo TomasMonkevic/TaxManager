@@ -24,45 +24,9 @@ namespace TaxManager.Persistence
             //modelBuilder.Entity<Municipality>().Property(m => m.Id).ValueGeneratedOnAdd();
             //modelBuilder.Entity<Tax>().Property(t => t.Id).ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Municipality>().HasData(
-                new Municipality {
-                    Id = 1, 
-                    Name = "Copenhagen"
 
-                },
-                new Municipality {
-                    Id = 2, 
-                    Name = "Vilnius"
-                }
-            );
 
-            modelBuilder.Entity<Tax>().HasData(
-                new Tax {
-                    Id = 1,
-                    Rate = 0.4,
-                    TaxType = TaxType.Daily,
-                    From = DateTime.Parse("2016.01.01"),
-                    MunicipalityId = 1
-                },
-                new Tax {
-                    Id = 2,
-                    Rate = 0.2,
-                    TaxType = TaxType.Annually,
-                    From = DateTime.Parse("2016.01.01"),
-                    To = DateTime.Parse("2016.12.31"),
-                    MunicipalityId = 1
-                },
-                new Tax {
-                    Id = 3,
-                    Rate = 0.2,
-                    TaxType = TaxType.Annually,
-                    From = DateTime.Parse("2016.01.01"),
-                    To = DateTime.Parse("2016.12.31"),
-                    MunicipalityId = 2
-                }
-            );
-
-            //SeedData(modelBuilder);
+            SeedData(modelBuilder);
         }
 
         private void SeedData(ModelBuilder modelBuilder) 
