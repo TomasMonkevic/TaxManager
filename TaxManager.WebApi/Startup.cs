@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TaxManager.Persistence;
+using TaxManager.Persistence.Repository;
+using TaxManager.Service;
 
 namespace TaxManager.WebApi
 {
@@ -32,6 +34,10 @@ namespace TaxManager.WebApi
             services.AddDbContext<TaxManagerContext>(
                 options => options.UseSqlite(Configuration.GetConnectionString("TaxManager"))
             );
+
+            services.AddScoped<TaxManagerContext>();
+            services.AddScoped<ITaxRepository, TaxRepository>();
+            services.AddScoped<ITaxManagementService, TaxManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
