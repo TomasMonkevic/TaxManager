@@ -13,19 +13,19 @@ namespace TaxManager.WebApi.Controllers
     [Route("[controller]")]
     public class TaxController : ControllerBase
     {
-        private readonly ITaxManagementService _taxManagementService;
+        private readonly ITaxService _taxService;
         private readonly ILogger<TaxController> _logger;
 
-        public TaxController(ITaxManagementService taxManagementService, ILogger<TaxController> logger)
+        public TaxController(ITaxService taxManagementService, ILogger<TaxController> logger)
         {
-            _taxManagementService = taxManagementService;
+            _taxService = taxManagementService;
             _logger = logger;
         }
 
         [HttpGet]
         public TaxRateResponse Get([FromQuery] TaxRateRequest request)
         {
-            var rate = _taxManagementService.GetTaxRate(request.Municipality, request.Day);
+            var rate = _taxService.GetTaxRate(request.Municipality, request.Day);
             return new TaxRateResponse { Rate = rate };
         }
     }

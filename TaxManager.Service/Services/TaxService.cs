@@ -5,12 +5,12 @@ using TaxManager.Service.Exceptions;
 
 namespace TaxManager.Service
 {
-    public class TaxManagementService : ITaxManagementService
+    public class TaxService : ITaxService
     {
         private readonly IMunicipalityRepository _municipalityRepo;
         private readonly ITaxRepository _taxRepository;
 
-        public TaxManagementService(IMunicipalityRepository municipalityRepo, ITaxRepository taxRepository) 
+        public TaxService(IMunicipalityRepository municipalityRepo, ITaxRepository taxRepository) 
         {
             _municipalityRepo = municipalityRepo;
             _taxRepository = taxRepository;
@@ -19,7 +19,7 @@ namespace TaxManager.Service
         public double GetTaxRate(string municipalityName, DateTime day) 
         {
             var municipality = _municipalityRepo.Get(municipalityName);
-            var tax = municipality?.Taxes?.Where(t => t.From.Date == day.Date || (t.To != null && t.From < day.Date && day.Date < t.To.Value.Date))
+            var tax = municipality?.Taxes?.Where(t => t.From.Date == day.Date || (t.From < day.Date && day.Date < t.To.Date))
                               .OrderBy(t => t.TaxType)
                               .FirstOrDefault() ?? throw new TaxNotAppliedException();
             return tax.Rate;

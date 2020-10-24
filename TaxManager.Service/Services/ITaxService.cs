@@ -2,7 +2,7 @@
 
 namespace TaxManager.Service
 {
-    public interface ITaxManagementService
+    public interface ITaxService
     {
         double GetTaxRate(string municipalityName, DateTime day);
     }

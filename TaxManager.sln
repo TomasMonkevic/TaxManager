@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxManager.Service", "TaxMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxManager.WebApi", "TaxManager.WebApi\TaxManager.WebApi.csproj", "{53AF1647-FE47-42B7-9380-37E5B744E0D4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5E1E6B85-A212-4D41-AB13-CFE010A53A0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxManager.UnitTests", "Tests\TaxManager.UnitTests\TaxManager.UnitTests.csproj", "{6D17D8CC-99D4-447A-BADF-B99EEF333F78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +90,20 @@ Global
 		{53AF1647-FE47-42B7-9380-37E5B744E0D4}.Release|x64.Build.0 = Release|Any CPU
 		{53AF1647-FE47-42B7-9380-37E5B744E0D4}.Release|x86.ActiveCfg = Release|Any CPU
 		{53AF1647-FE47-42B7-9380-37E5B744E0D4}.Release|x86.Build.0 = Release|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Debug|x64.Build.0 = Debug|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Debug|x86.Build.0 = Debug|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Release|x64.ActiveCfg = Release|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Release|x64.Build.0 = Release|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Release|x86.ActiveCfg = Release|Any CPU
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6D17D8CC-99D4-447A-BADF-B99EEF333F78} = {5E1E6B85-A212-4D41-AB13-CFE010A53A0C}
 	EndGlobalSection
 EndGlobal

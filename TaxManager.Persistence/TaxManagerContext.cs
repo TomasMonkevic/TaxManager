@@ -58,7 +58,6 @@ namespace TaxManager.Persistence
                     Rate = 0.2,
                     TaxType = TaxType.Annually,
                     From = DateTime.Parse("2016.01.01"),
-                    To = DateTime.Parse("2016.12.31"),
                     MunicipalityId = 1
                 },
                 new Tax {
@@ -66,7 +65,6 @@ namespace TaxManager.Persistence
                     Rate = 0.2,
                     TaxType = TaxType.Annually,
                     From = DateTime.Parse("2016.01.01"),
-                    To = DateTime.Parse("2016.12.31"),
                     MunicipalityId = 2
                 }
             );
