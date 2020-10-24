@@ -28,7 +28,6 @@ namespace TaxManager.Service
 
         public void ScheduleTax(string municipalityName, Tax tax)
         {
-            // TODO check if tax not null
             var municipality = _municipalityRepo.Get(municipalityName) ?? throw new Exception("Not found");
             tax.MunicipalityId = municipality.Id;
             //TODO check for overlap

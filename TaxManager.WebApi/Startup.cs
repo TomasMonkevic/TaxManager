@@ -48,6 +48,7 @@ namespace TaxManager.WebApi
             services.AddScoped<ITaxRepository, TaxRepository>();
             services.AddScoped<IMunicipalityRepository, MunicipalityRepository>();
             services.AddScoped<ITaxService, TaxService>();
+            services.AddScoped<IMunicipalityService, MunicipalityService>();
             services.AddScoped<ITaxScheduleMapper, TaxScheduleMapper>();
 
             services.AddTransient<IValidator<TaxRateRequest>, TaxRateRequestValidator>();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TaxManager.Contracts;
 using TaxManager.Service;
@@ -11,7 +7,7 @@ using TaxManager.WebApi.Mappers;
 namespace TaxManager.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TaxController : ControllerBase
     {
         private readonly ITaxService _taxService;
@@ -35,7 +31,12 @@ namespace TaxManager.WebApi.Controllers
         [HttpPost]
         public IActionResult Post(TaxScheduleRequest request)
         {
-            _taxService.ScheduleTax(request.Municipality, _taxScheduleMapper.ToTax(request));
+            var tax = _taxScheduleMapper.ToTax(request);
+            if (tax == null) {
+                return BadRequest();
+            }
+            
+            _taxService.ScheduleTax(request.Municipality, tax);
             return Ok();
         }
     }
