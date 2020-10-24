@@ -1,7 +1,9 @@
-﻿namespace TaxManager.Service
+﻿using System;
+
+namespace TaxManager.Service
 {
     public interface ITaxManagementService
     {
-        void GetTaxRate();
+        double GetTaxRate(string municipalityName, DateTime day);
     }
 }

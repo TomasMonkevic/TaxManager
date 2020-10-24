@@ -5,12 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TaxManager.Persistence\TaxManager.Persistence.csproj" />
     <ProjectReference Include="..\TaxManager.Service\TaxManager.Service.csproj" />
+    <ProjectReference Include="..\TaxManager.Contracts\TaxManager.Contracts.csproj" />
   </ItemGroup>
 
 

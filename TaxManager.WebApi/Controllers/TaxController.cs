@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TaxManager.Contracts;
 using TaxManager.Service;
 
 namespace TaxManager.WebApi.Controllers
@@ -22,10 +23,10 @@ namespace TaxManager.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public TaxRateResponse Get([FromQuery] TaxRateRequest request)
         {
-            _taxManagementService.GetTaxRate();
-            return Ok();
+            var rate = _taxManagementService.GetTaxRate(request.Municipality, request.Day);
+            return new TaxRateResponse { Rate = rate };
         }
     }
 }

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,9 +13,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TaxManager.Contracts;
 using TaxManager.Persistence;
 using TaxManager.Persistence.Repository;
 using TaxManager.Service;
+using TaxManager.WebApi.Filters;
 
 namespace TaxManager.WebApi
 {
@@ -29,15 +33,22 @@ namespace TaxManager.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(typeof(ExceptionHandlerFilter));
+            });
             services.AddSwaggerGen();
             services.AddDbContext<TaxManagerContext>(
                 options => options.UseSqlite(Configuration.GetConnectionString("TaxManager"))
             );
+            services.AddMvc().AddFluentValidation();
 
             services.AddScoped<TaxManagerContext>();
             services.AddScoped<ITaxRepository, TaxRepository>();
+            services.AddScoped<IMunicipalityRepository, MunicipalityRepository>();
             services.AddScoped<ITaxManagementService, TaxManagementService>();
+
+            services.AddTransient<IValidator<TaxRateRequest>, TaxRateRequestValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
