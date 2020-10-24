@@ -18,6 +18,7 @@ using TaxManager.Persistence;
 using TaxManager.Persistence.Repository;
 using TaxManager.Service;
 using TaxManager.WebApi.Filters;
+using TaxManager.WebApi.Mappers;
 
 namespace TaxManager.WebApi
 {
@@ -47,8 +48,10 @@ namespace TaxManager.WebApi
             services.AddScoped<ITaxRepository, TaxRepository>();
             services.AddScoped<IMunicipalityRepository, MunicipalityRepository>();
             services.AddScoped<ITaxService, TaxService>();
+            services.AddScoped<ITaxScheduleMapper, TaxScheduleMapper>();
 
             services.AddTransient<IValidator<TaxRateRequest>, TaxRateRequestValidator>();
+            services.AddTransient<IValidator<TaxScheduleRequest>, TaxScheduleRequestValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

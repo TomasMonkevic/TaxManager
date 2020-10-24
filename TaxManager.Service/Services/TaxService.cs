@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using TaxManager.Domain;
 using TaxManager.Persistence.Repository;
 using TaxManager.Service.Exceptions;
 
@@ -23,6 +24,15 @@ namespace TaxManager.Service
                               .OrderBy(t => t.TaxType)
                               .FirstOrDefault() ?? throw new TaxNotAppliedException();
             return tax.Rate;
+        }
+
+        public void ScheduleTax(string municipalityName, Tax tax)
+        {
+            // TODO check if tax not null
+            var municipality = _municipalityRepo.Get(municipalityName) ?? throw new Exception("Not found");
+            tax.MunicipalityId = municipality.Id;
+            //TODO check for overlap
+            _taxRepository.Add(tax);
         }
     }
 }

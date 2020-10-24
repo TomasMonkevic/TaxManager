@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TaxManager.Contracts;
 using TaxManager.Service;
+using TaxManager.WebApi.Mappers;
 
 namespace TaxManager.WebApi.Controllers
 {
@@ -14,11 +15,13 @@ namespace TaxManager.WebApi.Controllers
     public class TaxController : ControllerBase
     {
         private readonly ITaxService _taxService;
+        private readonly ITaxScheduleMapper _taxScheduleMapper;
         private readonly ILogger<TaxController> _logger;
 
-        public TaxController(ITaxService taxManagementService, ILogger<TaxController> logger)
+        public TaxController(ITaxScheduleMapper taxScheduleMapper, ITaxService taxService, ILogger<TaxController> logger)
         {
-            _taxService = taxManagementService;
+            _taxScheduleMapper = taxScheduleMapper;
+            _taxService = taxService;
             _logger = logger;
         }
 
@@ -27,6 +30,13 @@ namespace TaxManager.WebApi.Controllers
         {
             var rate = _taxService.GetTaxRate(request.Municipality, request.Day);
             return new TaxRateResponse { Rate = rate };
+        }
+
+        [HttpPost]
+        public IActionResult Post(TaxScheduleRequest request)
+        {
+            _taxService.ScheduleTax(request.Municipality, _taxScheduleMapper.ToTax(request));
+            return Ok();
         }
     }
 }

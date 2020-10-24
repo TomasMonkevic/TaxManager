@@ -1,5 +1,4 @@
 using TaxManager.Domain;
-using System.Linq;
 
 namespace TaxManager.Persistence.Repository
 {
@@ -13,8 +12,8 @@ namespace TaxManager.Persistence.Repository
 
         public void Add(Tax tax)
         {
-            var taxes = _context.Taxes.ToList();
-            var municip = _context.Manucipalities.ToList();
+            _context.Add(tax);
+            _context.SaveChanges();
         }
     }
 }
