@@ -29,7 +29,6 @@ namespace TaxManager.Persistence.Migrations
                     Rate = table.Column<double>(nullable: false),
                     TaxType = table.Column<int>(nullable: false),
                     From = table.Column<DateTime>(nullable: false),
-                    To = table.Column<DateTime>(nullable: true),
                     MunicipalityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -60,18 +59,18 @@ namespace TaxManager.Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "Taxes",
-                columns: new[] { "Id", "From", "MunicipalityId", "Rate", "TaxType", "To" },
-                values: new object[] { 1, new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 0.40000000000000002, 0, null });
+                columns: new[] { "Id", "From", "MunicipalityId", "Rate", "TaxType" },
+                values: new object[] { 1, new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 0.40000000000000002, 0 });
 
             migrationBuilder.InsertData(
                 table: "Taxes",
-                columns: new[] { "Id", "From", "MunicipalityId", "Rate", "TaxType", "To" },
-                values: new object[] { 2, new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 0.20000000000000001, 3, new DateTime(2016, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "From", "MunicipalityId", "Rate", "TaxType" },
+                values: new object[] { 2, new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 0.20000000000000001, 3 });
 
             migrationBuilder.InsertData(
                 table: "Taxes",
-                columns: new[] { "Id", "From", "MunicipalityId", "Rate", "TaxType", "To" },
-                values: new object[] { 3, new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 0.20000000000000001, 3, new DateTime(2016, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "From", "MunicipalityId", "Rate", "TaxType" },
+                values: new object[] { 3, new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 0.20000000000000001, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Taxes_MunicipalityId",

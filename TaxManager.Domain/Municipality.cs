@@ -6,6 +6,6 @@ namespace TaxManager.Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Tax> Taxes { get; set; }
+        public ICollection<Tax> Taxes { get; set; }
     }
 }

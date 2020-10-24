@@ -18,8 +18,15 @@ namespace TaxManager.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Municipality>().HasKey(m => m.Id);
-            modelBuilder.Entity<Tax>().HasKey(t => t.Id);
+            //modelBuilder.Entity<Municipality>().HasKey(m => m.Id);
+            //modelBuilder.Entity<Tax>().HasKey(t => t.Id);
+            // modelBuilder.Entity<Tax>().HasOne(t => t.Municipality)
+            //                           .WithMany(m => m.Taxes)
+            //                           .HasForeignKey(t => t.MunicipalityId);
+
+            modelBuilder.Entity<Municipality>().HasMany(m => m.Taxes)
+                                                .WithOne(t => t.Municipality)
+                                                .HasForeignKey(t => t.MunicipalityId);
 
             //modelBuilder.Entity<Municipality>().Property(m => m.Id).ValueGeneratedOnAdd();
             //modelBuilder.Entity<Tax>().Property(t => t.Id).ValueGeneratedOnAdd();

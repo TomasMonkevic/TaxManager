@@ -1,4 +1,5 @@
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using TaxManager.Domain;
 
 namespace TaxManager.Persistence.Repository
@@ -12,7 +13,8 @@ namespace TaxManager.Persistence.Repository
         }
 
         public Municipality Get(string name) {
-            return _context.Manucipalities.FirstOrDefault(m => m.Name.ToLower() == name.ToLower());
+            return _context.Manucipalities.Include(m => m.Taxes)
+                                          .FirstOrDefault(m => m.Name.ToLower() == name.ToLower());
         }
     }
 }

@@ -9,7 +9,7 @@ using TaxManager.Persistence;
 namespace TaxManager.Persistence.Migrations
 {
     [DbContext(typeof(TaxManagerContext))]
-    [Migration("20201024073020_Init")]
+    [Migration("20201024143604_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,9 +67,6 @@ namespace TaxManager.Persistence.Migrations
                     b.Property<int>("TaxType")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("To")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MunicipalityId");
@@ -91,8 +88,7 @@ namespace TaxManager.Persistence.Migrations
                             From = new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MunicipalityId = 1,
                             Rate = 0.20000000000000001,
-                            TaxType = 3,
-                            To = new DateTime(2016, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TaxType = 3
                         },
                         new
                         {
@@ -100,8 +96,7 @@ namespace TaxManager.Persistence.Migrations
                             From = new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MunicipalityId = 2,
                             Rate = 0.20000000000000001,
-                            TaxType = 3,
-                            To = new DateTime(2016, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            TaxType = 3
                         });
                 });
 
