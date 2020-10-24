@@ -32,6 +32,7 @@ namespace TaxManager.Service
             tax.MunicipalityId = municipality.Id;
             //TODO check for overlap
             _taxRepository.Add(tax);
+            _taxRepository.Save();
         }
     }
 }

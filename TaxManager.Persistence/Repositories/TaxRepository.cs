@@ -13,6 +13,10 @@ namespace TaxManager.Persistence.Repository
         public void Add(Tax tax)
         {
             _context.Add(tax);
+        }
+
+        public void Save() 
+        {
             _context.SaveChanges();
         }
     }

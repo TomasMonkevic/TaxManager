@@ -1,3 +1,5 @@
+using System.IO;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TaxManager.Contracts;
@@ -10,10 +12,12 @@ namespace TaxManager.WebApi.Controllers
     public class MunicipalityController : ControllerBase
     {
         private readonly IMunicipalityService _municipalityService;
+        private readonly IImportService _importService;
         private readonly ILogger<MunicipalityController> _logger;
 
-        public MunicipalityController(IMunicipalityService municipalityService, ILogger<MunicipalityController> logger)
+        public MunicipalityController(IMunicipalityService municipalityService, IImportService importService, ILogger<MunicipalityController> logger)
         {
+            _importService = importService;
             _municipalityService = municipalityService;
             _logger = logger;
         }
@@ -29,6 +33,17 @@ namespace TaxManager.WebApi.Controllers
         public IActionResult Delete(string municipalityName)
         {
             _municipalityService.Delete(municipalityName);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("import")]
+        public IActionResult Import(IFormFile file)
+        {
+            using (var stream = new StreamReader(file.OpenReadStream()))
+            {
+                _importService.ImportMunicipalities(stream);
+            }
             return Ok();
         }
     }
