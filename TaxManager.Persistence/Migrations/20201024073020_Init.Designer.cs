@@ -9,8 +9,8 @@ using TaxManager.Persistence;
 namespace TaxManager.Persistence.Migrations
 {
     [DbContext(typeof(TaxManagerContext))]
-    [Migration("20201023210303_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201024073020_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,6 +41,11 @@ namespace TaxManager.Persistence.Migrations
                         {
                             Id = 2,
                             Name = "Vilnius"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Oslo"
                         });
                 });
 

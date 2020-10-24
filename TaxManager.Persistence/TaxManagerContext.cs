@@ -24,8 +24,6 @@ namespace TaxManager.Persistence
             //modelBuilder.Entity<Municipality>().Property(m => m.Id).ValueGeneratedOnAdd();
             //modelBuilder.Entity<Tax>().Property(t => t.Id).ValueGeneratedOnAdd();
 
-
-
             SeedData(modelBuilder);
         }
 
@@ -40,6 +38,10 @@ namespace TaxManager.Persistence
                 new Municipality {
                     Id = 2, 
                     Name = "Vilnius"
+                },
+                new Municipality {
+                    Id = 3, 
+                    Name = "Oslo"
                 }
             );
 

@@ -39,6 +39,11 @@ namespace TaxManager.Persistence.Migrations
                         {
                             Id = 2,
                             Name = "Vilnius"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Oslo"
                         });
                 });
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TaxManager.Persistence.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,6 +52,11 @@ namespace TaxManager.Persistence.Migrations
                 table: "Manucipalities",
                 columns: new[] { "Id", "Name" },
                 values: new object[] { 2, "Vilnius" });
+
+            migrationBuilder.InsertData(
+                table: "Manucipalities",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 3, "Oslo" });
 
             migrationBuilder.InsertData(
                 table: "Taxes",
