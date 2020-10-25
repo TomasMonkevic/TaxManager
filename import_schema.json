@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Taxes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Rate": {
+                "type": "number"
+              },
+              "TaxType": {
+                "type": "string",
+                "enum": [
+                  "Daily",
+                  "Weekly",
+                  "Monthly",
+                  "Annually"
+                ]
+              },
+              "From": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "Rate",
+              "TaxType",
+              "From"
+            ]
+          }
+        }
+      },
+      "required": [
+        "Name"
+      ]
+    }
+  }
