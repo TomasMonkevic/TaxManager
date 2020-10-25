@@ -16,7 +16,7 @@ namespace TaxManager.Service
         public void Create(string manucipality) //TODO return bool?
         {
             var municipalities = _municipalityRepo.GetAll();
-            if(municipalities.Any(m => m.Name == manucipality)) 
+            if(municipalities.Any(m => m.Name.ToLower() == manucipality.ToLower())) 
             {
                 return;
             }

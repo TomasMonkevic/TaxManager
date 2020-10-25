@@ -3,6 +3,7 @@ using System.Linq;
 using TaxManager.Domain;
 using TaxManager.Persistence.Repository;
 using TaxManager.Service.Exceptions;
+using TaxManager.Service.Utils;
 
 namespace TaxManager.Service
 {
@@ -20,7 +21,7 @@ namespace TaxManager.Service
         public double GetTaxRate(string municipalityName, DateTime day) 
         {
             var municipality = _municipalityRepo.Get(municipalityName);
-            var tax = municipality?.Taxes?.Where(t => t.From.Date == day.Date || (t.From < day.Date && day.Date < t.To.Date))
+            var tax = municipality?.Taxes?.Where(t => DateUtils.IsDateInclusive(t.From, t.To, day))
                               .OrderBy(t => t.TaxType)
                               .FirstOrDefault() ?? throw new TaxNotAppliedException();
             return tax.Rate;

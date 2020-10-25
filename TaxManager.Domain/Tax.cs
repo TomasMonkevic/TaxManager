@@ -13,7 +13,7 @@ namespace TaxManager.Domain
             get {
                 return TaxType switch
                 {
-                    TaxType.Daily => From,
+                    TaxType.Daily => From.AddDays(1),
                     TaxType.Weekly => From.AddDays(7),
                     TaxType.Monthly => From.AddMonths(1),
                     TaxType.Annually => From.AddYears(1),

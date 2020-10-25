@@ -70,6 +70,7 @@ namespace TaxManager.UnitTests
             var allData = new List<object[]>
             {
                 new object[] { new List<Tax> { dailyTax }, new DateTime(2020, 1, 15), 0.4 },
+                new object[] { new List<Tax> { dailyTax, annuallTax }, new DateTime(2020, 1, 14), 0.1 },
                 new object[] { new List<Tax> { dailyTax, annuallTax }, new DateTime(2020, 1, 16), 0.1 },
                 new object[] { new List<Tax> { monthlyTax, annuallTax }, new DateTime(2020, 1, 1), 0.2 },
                 new object[] { new List<Tax> { monthlyTax, annuallTax }, new DateTime(2020, 1, 31), 0.2 },
