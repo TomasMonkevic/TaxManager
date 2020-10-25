@@ -1,8 +1,6 @@
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using TaxManager.Contracts;
 using TaxManager.Service;
 
 namespace TaxManager.WebApi.Controllers
@@ -13,13 +11,11 @@ namespace TaxManager.WebApi.Controllers
     {
         private readonly IMunicipalityService _municipalityService;
         private readonly IImportService _importService;
-        private readonly ILogger<MunicipalityController> _logger;
 
-        public MunicipalityController(IMunicipalityService municipalityService, IImportService importService, ILogger<MunicipalityController> logger)
+        public MunicipalityController(IMunicipalityService municipalityService, IImportService importService)
         {
             _importService = importService;
             _municipalityService = municipalityService;
-            _logger = logger;
         }
 
         [HttpPost]

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using TaxManager.Contracts;
 using TaxManager.Service;
 using TaxManager.WebApi.Mappers;
@@ -12,13 +11,11 @@ namespace TaxManager.WebApi.Controllers
     {
         private readonly ITaxService _taxService;
         private readonly ITaxScheduleMapper _taxScheduleMapper;
-        private readonly ILogger<TaxController> _logger;
 
-        public TaxController(ITaxScheduleMapper taxScheduleMapper, ITaxService taxService, ILogger<TaxController> logger)
+        public TaxController(ITaxScheduleMapper taxScheduleMapper, ITaxService taxService)
         {
             _taxScheduleMapper = taxScheduleMapper;
             _taxService = taxService;
-            _logger = logger;
         }
 
         [HttpGet]
@@ -29,6 +26,7 @@ namespace TaxManager.WebApi.Controllers
         }
 
         [HttpPost]
+        [Route("Schedule")]
         public IActionResult Post(TaxScheduleRequest request)
         {
             var tax = _taxScheduleMapper.ToTax(request);

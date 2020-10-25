@@ -11,13 +11,16 @@ namespace TaxManager.WebApi
         {
             var host = CreateHostBuilder(args).Build();
 
-            using (var scope = host.Services.CreateScope())
-            {
-                var db = scope.ServiceProvider.GetRequiredService<TaxManagerContext>();
-                db.Migrate();
-            }
-            
+            MigrateDb(host);
+
             host.Run();
+        }
+
+        private static void MigrateDb(IHost host)
+        {
+            using var scope = host.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<TaxManagerContext>();
+            db.Migrate();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
