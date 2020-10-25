@@ -41,6 +41,42 @@ namespace TaxManager.UnitTests
             _taxService.GetTaxRate("random", DateTime.Now));
         }
 
+        [Fact]
+        public void CanSchedule()
+        {
+            _municipalityRepo.Get("Vilnius").Returns(new Municipality
+            {
+                Taxes = new List<Tax> {
+                    new Tax { TaxType = TaxType.Monthly, From = new DateTime(2020, 10, 1) }
+                }
+            });
+            var isScheduled = _taxService.ScheduleTax("Vilnius", new Tax { TaxType = TaxType.Daily, From = new DateTime(2020, 10, 15) });
+
+            isScheduled.ShouldBe(true);
+        }
+
+        [Fact]
+        public void Schedule_WhenTaxIsOverlapping()
+        {
+            _municipalityRepo.Get("Vilnius").Returns(new Municipality
+            {
+                Taxes = new List<Tax> {
+                    new Tax { TaxType = TaxType.Monthly, From = new DateTime(2020, 10, 1) }
+                }
+            });
+            var isScheduled = _taxService.ScheduleTax("Vilnius", new Tax { TaxType = TaxType.Monthly, From = new DateTime(2020, 10, 15) });
+
+            isScheduled.ShouldBe(false);
+        }
+
+        [Fact]
+        public void Schedule_WhenMunicipalityNotFound()
+        {
+            var isScheduled = _taxService.ScheduleTax("Vilnius", default);
+
+            isScheduled.ShouldBe(false);
+        }
+
         public static IEnumerable<object[]> CanGetTaxRateData()
         {
             var dailyTax = new Tax {

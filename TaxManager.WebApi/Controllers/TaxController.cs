@@ -34,8 +34,8 @@ namespace TaxManager.WebApi.Controllers
                 return BadRequest();
             }
             
-            var isSuccessful = _taxService.ScheduleTax(request.Municipality, tax);
-            return isSuccessful ? (IActionResult) Ok() : BadRequest();
+            var isScheduled = _taxService.ScheduleTax(request.Municipality, tax);
+            return isScheduled ? (IActionResult) Ok() : BadRequest();
         }
     }
 }

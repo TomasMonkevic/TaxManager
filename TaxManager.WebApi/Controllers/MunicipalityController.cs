@@ -21,15 +21,15 @@ namespace TaxManager.WebApi.Controllers
         [HttpPost]
         public IActionResult Create(string municipalityName)
         {
-            var isSuccessful = _municipalityService.Create(municipalityName);
-            return isSuccessful ? (IActionResult) Ok() : BadRequest();
+            var isCreated = _municipalityService.Create(municipalityName);
+            return isCreated ? (IActionResult) Ok() : BadRequest();
         }
 
         [HttpDelete]
         public IActionResult Delete(string municipalityName)
         {
-            var isSuccessful = _municipalityService.Delete(municipalityName);
-            return isSuccessful ? (IActionResult) Ok() : BadRequest();
+            var isDeleted = _municipalityService.Delete(municipalityName);
+            return isDeleted ? (IActionResult) Ok() : BadRequest();
         }
 
         [HttpPost]
