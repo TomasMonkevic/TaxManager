@@ -42,36 +42,6 @@ namespace TaxManager.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Manucipalities",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "Copenhagen" });
-
-            migrationBuilder.InsertData(
-                table: "Manucipalities",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 2, "Vilnius" });
-
-            migrationBuilder.InsertData(
-                table: "Manucipalities",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 3, "Oslo" });
-
-            migrationBuilder.InsertData(
-                table: "Taxes",
-                columns: new[] { "Id", "From", "MunicipalityId", "Rate", "TaxType" },
-                values: new object[] { 1, new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 0.40000000000000002, 0 });
-
-            migrationBuilder.InsertData(
-                table: "Taxes",
-                columns: new[] { "Id", "From", "MunicipalityId", "Rate", "TaxType" },
-                values: new object[] { 2, new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 0.20000000000000001, 3 });
-
-            migrationBuilder.InsertData(
-                table: "Taxes",
-                columns: new[] { "Id", "From", "MunicipalityId", "Rate", "TaxType" },
-                values: new object[] { 3, new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 0.20000000000000001, 3 });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Taxes_MunicipalityId",
                 table: "Taxes",

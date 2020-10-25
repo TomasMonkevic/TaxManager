@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TaxManager.Domain;
 
 namespace TaxManager.Persistence
@@ -11,70 +9,13 @@ namespace TaxManager.Persistence
         public DbSet<Tax> Taxes { get; set; }
 
         public TaxManagerContext(DbContextOptions<TaxManagerContext> options) 
-            : base(options)
-        {
-
-        }
+            : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Municipality>().HasKey(m => m.Id);
-            //modelBuilder.Entity<Tax>().HasKey(t => t.Id);
-            // modelBuilder.Entity<Tax>().HasOne(t => t.Municipality)
-            //                           .WithMany(m => m.Taxes)
-            //                           .HasForeignKey(t => t.MunicipalityId);
-
             modelBuilder.Entity<Municipality>().HasMany(m => m.Taxes)
                                                 .WithOne(t => t.Municipality)
                                                 .HasForeignKey(t => t.MunicipalityId);
-
-            //modelBuilder.Entity<Municipality>().Property(m => m.Id).ValueGeneratedOnAdd();
-            //modelBuilder.Entity<Tax>().Property(t => t.Id).ValueGeneratedOnAdd();
-
-            SeedData(modelBuilder);
-        }
-
-        private void SeedData(ModelBuilder modelBuilder) 
-        {
-            modelBuilder.Entity<Municipality>().HasData(
-                new Municipality {
-                    Id = 1, 
-                    Name = "Copenhagen"
-
-                },
-                new Municipality {
-                    Id = 2, 
-                    Name = "Vilnius"
-                },
-                new Municipality {
-                    Id = 3, 
-                    Name = "Oslo"
-                }
-            );
-
-            modelBuilder.Entity<Tax>().HasData(
-                new Tax {
-                    Id = 1,
-                    Rate = 0.4,
-                    TaxType = TaxType.Daily,
-                    From = DateTime.Parse("2016.01.01"),
-                    MunicipalityId = 1
-                },
-                new Tax {
-                    Id = 2,
-                    Rate = 0.2,
-                    TaxType = TaxType.Annually,
-                    From = DateTime.Parse("2016.01.01"),
-                    MunicipalityId = 1
-                },
-                new Tax {
-                    Id = 3,
-                    Rate = 0.2,
-                    TaxType = TaxType.Annually,
-                    From = DateTime.Parse("2016.01.01"),
-                    MunicipalityId = 2
-                }
-            );
         }
     }
 }

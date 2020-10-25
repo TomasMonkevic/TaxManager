@@ -28,23 +28,6 @@ namespace TaxManager.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Manucipalities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Copenhagen"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Vilnius"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Oslo"
-                        });
                 });
 
             modelBuilder.Entity("TaxManager.Domain.Tax", b =>
@@ -70,32 +53,6 @@ namespace TaxManager.Persistence.Migrations
                     b.HasIndex("MunicipalityId");
 
                     b.ToTable("Taxes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            From = new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MunicipalityId = 1,
-                            Rate = 0.40000000000000002,
-                            TaxType = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            From = new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MunicipalityId = 1,
-                            Rate = 0.20000000000000001,
-                            TaxType = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            From = new DateTime(2016, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MunicipalityId = 2,
-                            Rate = 0.20000000000000001,
-                            TaxType = 3
-                        });
                 });
 
             modelBuilder.Entity("TaxManager.Domain.Tax", b =>
