@@ -1,0 +1,42 @@
+[
+    {
+        "Name": "Warsaw",
+        "Taxes": 
+        [
+            {
+                "Rate": 0.4,
+                "TaxType": "Daily",
+                "From": "2020-01-05" 
+            },
+            {
+                "Rate": 0.3,
+                "TaxType": "Weekly",
+                "From": "2020-01-05" 
+            }
+        ]
+    },
+    {
+        "Name": "Vilnius",
+        "Taxes": 
+        [
+            {
+                "Rate": 0.3,
+                "TaxType": "Daily",
+                "From": "2020-01-05" 
+            },
+            {
+                "Rate": 0.3,
+                "TaxType": "Daily",
+                "From": "2020-01-07" 
+            },
+            {
+                "Rate": 0.2,
+                "TaxType": "Weekly",
+                "From": "2020-01-05" 
+            }
+        ]
+    },
+    {
+        "Name": "Denver"
+    }
+]
