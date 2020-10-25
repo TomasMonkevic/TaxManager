@@ -28,10 +28,10 @@ namespace TaxManager.UnitTests
         [Fact]
         public void CanImportMunicipalities_WhenEmpty() 
         {
-            using (var sr = new StreamReader($"{TEST_DATA_PATH}/correct.json"))
-            {
-                _importService.ImportMunicipalities(sr);
-            }
+            using var sr = new StreamReader($"{TEST_DATA_PATH}/correct.json");
+            var isSuccessful = _importService.ImportMunicipalities(sr);
+            isSuccessful.ShouldBe(true);
+
             _municipalityRepo.ReceivedWithAnyArgs(3).Add(default);
             _taxRepository.ReceivedWithAnyArgs(5).Add(default);
 
@@ -39,18 +39,18 @@ namespace TaxManager.UnitTests
             _taxRepository.Received(1).Save();
         }
 
-        // [Fact] TODO not yet finished
-        // public void CanImportMunicipalities_WhenIncorrectData() 
-        // {
-        //     using (var sr = new StreamReader($"{TEST_DATA_PATH}/incorrect.json"))
-        //     {
-        //         _importService.ImportMunicipalities(sr);
-        //     }
-        //     _municipalityRepo.ReceivedWithAnyArgs(2).Add(default);
-        //     _taxRepository.ReceivedWithAnyArgs(5).Add(default);
+        [Fact]
+         public void CanImportMunicipalities_WhenIncorrectData()
+        {
+            using var sr = new StreamReader($"{TEST_DATA_PATH}/incorrect.json");
+            var isSuccessful = _importService.ImportMunicipalities(sr);
+            isSuccessful.ShouldBe(false);
 
-        //     _municipalityRepo.Received(1).Save();
-        //     _taxRepository.Received(1).Save();
-        // }
+            _municipalityRepo.DidNotReceive().Add(default);
+            _taxRepository.DidNotReceive().Add(default);
+
+            _municipalityRepo.DidNotReceive().Save();
+            _taxRepository.DidNotReceive().Save();
+        }
     }
 }

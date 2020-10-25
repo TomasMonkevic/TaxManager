@@ -4,6 +4,6 @@ namespace TaxManager.Service
 {
     public interface IImportService
     {
-        void ImportMunicipalities(StreamReader stream);
+        bool ImportMunicipalities(StreamReader stream);
     }
 }

@@ -40,11 +40,9 @@ namespace TaxManager.WebApi.Controllers
         [Route("import")]
         public IActionResult Import(IFormFile file)
         {
-            using (var stream = new StreamReader(file.OpenReadStream()))
-            {
-                _importService.ImportMunicipalities(stream);
-            }
-            return Ok();
+            using var stream = new StreamReader(file.OpenReadStream());
+            var isSuccessfulImport = _importService.ImportMunicipalities(stream);
+            return isSuccessfulImport ? (IActionResult) Ok() : BadRequest();
         }
     }
 }
