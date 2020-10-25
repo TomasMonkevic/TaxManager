@@ -16,6 +16,8 @@ namespace TaxManager.Persistence
             modelBuilder.Entity<Municipality>().HasMany(m => m.Taxes)
                                                 .WithOne(t => t.Municipality)
                                                 .HasForeignKey(t => t.MunicipalityId);
+
+            modelBuilder.Entity<Municipality>().HasIndex(m => m.Name).IsUnique();
         }
     }
 }

@@ -43,6 +43,12 @@ namespace TaxManager.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Manucipalities_Name",
+                table: "Manucipalities",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Taxes_MunicipalityId",
                 table: "Taxes",
                 column: "MunicipalityId");

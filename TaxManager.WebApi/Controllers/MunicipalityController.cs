@@ -19,21 +19,21 @@ namespace TaxManager.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(string municipalityName) //TODO create dto
+        public IActionResult Create(string municipalityName)
         {
-            _municipalityService.Create(municipalityName);
-            return Ok();
+            var isSuccessful = _municipalityService.Create(municipalityName);
+            return isSuccessful ? (IActionResult) Ok() : BadRequest();
         }
 
         [HttpDelete]
         public IActionResult Delete(string municipalityName)
         {
-            _municipalityService.Delete(municipalityName);
-            return Ok();
+            var isSuccessful = _municipalityService.Delete(municipalityName);
+            return isSuccessful ? (IActionResult) Ok() : BadRequest();
         }
 
         [HttpPost]
-        [Route("import")]
+        [Route("Import")]
         public IActionResult Import(IFormFile file)
         {
             using var stream = new StreamReader(file.OpenReadStream());

@@ -27,15 +27,15 @@ namespace TaxManager.WebApi.Controllers
 
         [HttpPost]
         [Route("Schedule")]
-        public IActionResult Post(TaxScheduleRequest request)
+        public IActionResult Schedule(TaxScheduleRequest request)
         {
             var tax = _taxScheduleMapper.ToTax(request);
             if (tax == null) {
                 return BadRequest();
             }
             
-            _taxService.ScheduleTax(request.Municipality, tax);
-            return Ok();
+            var isSuccessful = _taxService.ScheduleTax(request.Municipality, tax);
+            return isSuccessful ? (IActionResult) Ok() : BadRequest();
         }
     }
 }

@@ -9,7 +9,7 @@ using TaxManager.Persistence;
 namespace TaxManager.Persistence.Migrations
 {
     [DbContext(typeof(TaxManagerContext))]
-    [Migration("20201025173900_Init")]
+    [Migration("20201025182835_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,6 +28,9 @@ namespace TaxManager.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Manucipalities");
                 });

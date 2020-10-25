@@ -1,4 +1,4 @@
-using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using TaxManager.Domain;
 using TaxManager.Persistence.Repository;
 
@@ -13,28 +13,31 @@ namespace TaxManager.Service
             _municipalityRepo = municipalityRepo;
         }
 
-        public void Create(string manucipality) //TODO return bool?
+        public bool Create(string manucipality)
         {
-            var municipalities = _municipalityRepo.GetAll();
-            if(municipalities.Any(m => m.Name.ToLower() == manucipality.ToLower())) 
+            try
             {
-                return;
+                _municipalityRepo.Add(new Municipality { Name = manucipality });
+                _municipalityRepo.Save();
+                return true;
             }
-
-            _municipalityRepo.Add(new Municipality { Name = manucipality });
-            _municipalityRepo.Save();
+            catch (DbUpdateException)
+            {
+                return false;
+            }
         }
 
-        public void Delete(string manucipalityName)
+        public bool Delete(string manucipalityName)
         {
             var municipality = _municipalityRepo.Get(manucipalityName);
             if(municipality == null) 
             {
-                return;
+                return false;
             }
 
             _municipalityRepo.Remove(municipality);
             _municipalityRepo.Save();
+            return true;
         }
     }
 }

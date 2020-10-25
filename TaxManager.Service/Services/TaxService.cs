@@ -27,17 +27,18 @@ namespace TaxManager.Service
             return tax.Rate;
         }
 
-        public void ScheduleTax(string municipalityName, Tax tax)
+        public bool ScheduleTax(string municipalityName, Tax tax)
         {
-            var municipality = _municipalityRepo.Get(municipalityName) ?? throw new Exception("Not found");
-            if (municipality.IsTaxOverlapping(tax)) 
+            var municipality = _municipalityRepo.Get(municipalityName);
+            if (municipality == null || municipality.IsTaxOverlapping(tax)) 
             {
-                return; //TODO return bool?
+                return false;
             }
             
             tax.MunicipalityId = municipality.Id;
             _taxRepository.Add(tax);
             _taxRepository.Save();
+            return true;
         }
     }
 }

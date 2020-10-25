@@ -2,7 +2,7 @@ namespace TaxManager.Service
 {
     public interface IMunicipalityService
     {
-        void Create(string manucipality);
-        void Delete(string manucipality);
+        bool Create(string manucipality);
+        bool Delete(string manucipality);
     }
 }
