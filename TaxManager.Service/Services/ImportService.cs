@@ -3,6 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using TaxManager.Domain;
 using TaxManager.Persistence.Repository;
+using TaxManager.Service.Utils;
 
 namespace TaxManager.Service
 {
@@ -19,19 +20,25 @@ namespace TaxManager.Service
 
         public void ImportMunicipalities(StreamReader stream) 
         {
+            //TODO handle exceptions and refactor
             var municipalities = JsonConvert.DeserializeObject<List<Municipality>>(stream.ReadToEnd());
             foreach (var municipality in municipalities) 
             {
                 var m = _municipalityRepo.Get(municipality.Name);
-                if (m == null) {
-                    //I hope that id is created here
+                if (m == null) 
+                {
                     _municipalityRepo.Add(municipality);
                     m = new Municipality { Id = municipality.Id };
                 }
 
-                foreach (var tax in municipality.Taxes) {
+                foreach (var tax in municipality.Taxes) 
+                {
+                    if (m.IsTaxOverlapping(tax)) 
+                    {
+                        continue;
+                    }
+
                     tax.MunicipalityId = m.Id;
-                    //TODO check overlap
                     _taxRepository.Add(tax);
                 }
             }

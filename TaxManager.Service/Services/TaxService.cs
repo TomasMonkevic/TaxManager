@@ -30,8 +30,12 @@ namespace TaxManager.Service
         public void ScheduleTax(string municipalityName, Tax tax)
         {
             var municipality = _municipalityRepo.Get(municipalityName) ?? throw new Exception("Not found");
+            if (municipality.IsTaxOverlapping(tax)) 
+            {
+                return; //TODO return bool?
+            }
+            
             tax.MunicipalityId = municipality.Id;
-            //TODO check for overlap
             _taxRepository.Add(tax);
             _taxRepository.Save();
         }
