@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using TaxManager.Domain;
 using TaxManager.Persistence.Repository;
 
@@ -21,7 +20,7 @@ namespace TaxManager.Service
                 _municipalityRepo.Save();
                 return true;
             }
-            catch (DbUpdateException)
+            catch
             {
                 return false;
             }
